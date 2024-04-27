@@ -1,0 +1,165 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script:regular,500,600,700);
+
+:root {
+  --bgc: #faefe2;
+  --hover-color: rgb(141, 24, 88);
+  --item-color: #fff8f0;
+  --item-height: 250px;
+  --item-width: 220px;
+  --transition: 0.3s;
+  --red-color: rgb(218, 8, 8);
+  --border: 1px solid rgb(0, 0, 0, 0.3);
+  --border-r: 5px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+button {
+  font-size: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+html {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  font-family: Lato, serif;
+  background-color: var(--bgc);
+}
+
+body {
+  height: 100vh;
+  font-size: 16px;
+}
+
+.wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: var(--border);
+}
+
+.main {
+  flex: 1 1 auto;
+  padding: 20px 0px;
+}
+.title {
+  font-family: 'Dancing Script', cursive;
+  color: var(--red-color);
+}
+
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  padding: 40px 0px;
+}
+
+.item {
+  height: var(--item-height);
+  width: var(--item-width);
+  padding: 50px 20px;
+  border: var(--border);
+  border-radius: var(--border-r);
+  display: flex;
+  background-color: var(--item-color);
+  transition: var(--transition);
+  &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+}
+
+.item {
+  align-items: center;
+  justify-content: end;
+  gap: 40px;
+  flex-direction: column;
+  position: relative;
+}
+
+.book-title {
+  margin-bottom: 10px;
+}
+
+.book-read {
+  border: 1px solid #000;
+  border-radius: var(--border-r);
+  padding: 5px 10px;
+  &:hover {
+    background-color: #000;
+    color: var(--bgc);
+  }
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.delete-book-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  font-size: 1.8em;
+  cursor: pointer;
+  transition: var(--transition);
+  &:hover {
+    color: var(--red-color);
+  }
+}
+
+.button {
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  opacity: 0.2;
+  border: 2px solid #000;
+  border-radius: var(--border-r);
+}
+
+.button:hover {
+  opacity: 0.6;
+}
+
+.footer {
+  padding: 30px 0px;
+}
+
+.link {
+  color: rgb(190, 20, 48);
+}
+
+.link:visited {
+  color: rgb(148, 14, 137);
+}
+
+.link:active {
+  opacity: 0.4;
+}
