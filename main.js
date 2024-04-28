@@ -13,8 +13,6 @@ const bookTwo = new Book('Hard to Be a God', 'Arkady and Boris Strugatsky', 300,
 libraryBooksList.push(bookOne);
 libraryBooksList.push(bookTwo);
 
-console.log(libraryBooksList);
-
 const READ_BUTTON_TEXT = {
   read: 'already read',
   notRead: 'not read yet',
@@ -34,6 +32,32 @@ function renderTable() {
   </header>
   <main class="main">
     <div class="books"></div>
+    <dialog class="dialog">
+      <h3 class="form-title">Add a new book</h3>
+      <p class="error-message"></p>
+      <form method="dialog" class="form">
+        <div class="form-item">
+          <label for="title">Book title</label>
+          <input type="text" id="title" name="title" />
+        </div>
+        <div class="form-item">
+          <label for="author">Book author</label>
+          <input type="text" id="author" name="author" />
+        </div>
+        <div class="form-item">
+          <label for="pages">Book pages</label>
+          <input type="number" id="pages" name="pages" min="0"/>
+        </div>
+        <div class="form-item">
+          <label for="pages">Is book read?</label>
+          <select name="select">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+        <button class="form-button">Add book</button>
+      </form>
+    </dialog>
   </main>
   <footer class="footer">&copy; Developed by <a class="link" href="https://github.com/Elena-MyOne" target="_blank" rel=”noopener noreferrer”>MyOne</a></footer>
   `;
@@ -59,19 +83,49 @@ function renderBooks() {
 }
 
 const books = document.querySelector('.books');
-const button = document.getElementById('add');
+const addBookButton = document.getElementById('add');
+const closeButton = document.querySelector('dialog button');
+const dialog = document.querySelector('dialog');
 
 if (books) {
   renderBooks();
 }
 
-if (books && button) {
-  button.addEventListener('click', addBookToLibrary);
+if (books && addBookButton) {
+  addBookButton.addEventListener('click', openForm);
   books.addEventListener('click', handleBookEvents);
 }
 
-function addBookToLibrary() {
-  books.insertAdjacentHTML('afterbegin', `<div class="item">Hello</div>`);
+function openForm() {
+  dialog.showModal();
+}
+
+function closeForm(event) {
+  event.preventDefault();
+  const form = document.querySelector('.form');
+  const errorMessage = document.querySelector('.error-message');
+  const { title, author, pages, select } = form.elements;
+
+  if (title.value && author.value && pages.value) {
+    errorMessage.innerText = '';
+    const readStatus = select.value === 'true';
+    const newBook = new Book(
+      title.value,
+      author.value,
+      pages.value,
+      readStatus,
+      libraryBooksList.length + 1
+    );
+    libraryBooksList.push(newBook);
+    renderBooks();
+    dialog.close();
+  } else {
+    errorMessage.innerText = 'Please fill up all the form fields';
+  }
+}
+
+if (closeButton) {
+  closeButton.addEventListener('click', closeForm);
 }
 
 function handleBookEvents(event) {
@@ -91,9 +145,9 @@ function deleteBook(event) {
 
 function toggleReadStatus(event) {
   const readStatusButton = event.target.closest('.book-read');
-  const bookId = parseInt(readStatusButton.dataset.id);
-  const book = libraryBooksList.find((book) => book.id === bookId);
-  if (book) {
+  if (readStatusButton) {
+    const bookId = parseInt(readStatusButton.dataset.id);
+    const book = libraryBooksList.find((book) => book.id === bookId);
     if (book.read) {
       book.read = false;
       readStatusButton.innerText = READ_BUTTON_TEXT.notRead;

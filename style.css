@@ -13,6 +13,11 @@
   --border-r: 5px;
 }
 
+::backdrop {
+  background-image: linear-gradient(45deg, rgb(253, 221, 253), rgb(183, 131, 235));
+  opacity: 0.5;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -63,6 +68,7 @@ body {
   flex: 1 1 auto;
   padding: 20px 0px;
 }
+
 .title {
   font-family: 'Dancing Script', cursive;
   color: var(--red-color);
@@ -84,6 +90,11 @@ body {
   border: var(--border);
   border-radius: var(--border-r);
   display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 40px;
+  flex-direction: column;
+  position: relative;
   background-color: var(--item-color);
   transition: var(--transition);
   &:hover {
@@ -91,19 +102,12 @@ body {
   }
 }
 
-.item {
-  align-items: center;
-  justify-content: end;
-  gap: 40px;
-  flex-direction: column;
-  position: relative;
-}
-
 .book-title {
   margin-bottom: 10px;
 }
 
-.book-read {
+.book-read,
+.form-button {
   border: 1px solid #000;
   border-radius: var(--border-r);
   padding: 5px 10px;
@@ -146,6 +150,51 @@ body {
 
 .button:hover {
   opacity: 0.6;
+}
+
+.dialog {
+  top: 30%;
+  left: 40%;
+  padding: 20px;
+  border-radius: var(--border-r);
+  background-color: #fffcf9;
+  border: var(--border);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.error-message {
+  color: var(--red-color);
+}
+
+.form-title {
+  margin-bottom: 20px;
+}
+
+.form-item {
+  padding: 20px 0px;
+}
+
+.form label {
+  margin-right: 20px;
+}
+
+.form input,
+.form select {
+  border: var(--border);
+  border-radius: var(--border-r);
+  padding: 3px 5px;
+  width: 180px;
+}
+
+.form-button {
+  align-self: center;
+  margin-top: 20px;
+  background-color: #fff;
 }
 
 .footer {
