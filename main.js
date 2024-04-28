@@ -117,6 +117,10 @@ function closeForm(event) {
       libraryBooksList.length + 1
     );
     libraryBooksList.push(newBook);
+    title.value = '';
+    author.value = '';
+    pages.value = '';
+    select.value = 'false';
     renderBooks();
     dialog.close();
   } else {
